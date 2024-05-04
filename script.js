@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
         {id: 5, name: 'SSD', items: []},
         {id: 6, name: '机箱', items: []},
         {id: 7, name: '机箱风扇', items: []},
-        {id: 9, name: '内存', items: []},
-        {id: 8, name: '其他', items: []}
+        {id: 8, name: '内存', items: []},
+        {id: 9, name: '其他', items: []}
     ];
     function initPage() {
         const totalPrice = document.createElement('label');
