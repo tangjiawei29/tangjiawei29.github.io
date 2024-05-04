@@ -195,7 +195,9 @@ document.addEventListener('DOMContentLoaded', function() {
             updateTotal();
         });
         row.addEventListener('click', function() {
-            checkbox.click(); // 触发checkbox的点击事件
+             if (event.target !== checkbox) { // 确保点击的不是复选框自身
+                checkbox.click(); // 触发checkbox的点击事件
+            }
         });
     }
 
