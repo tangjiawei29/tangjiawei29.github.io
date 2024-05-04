@@ -120,6 +120,12 @@ document.addEventListener('DOMContentLoaded', function() {
         saveToLocalStorage();
     }
 
+    function clrItem(categoryId) {
+        categories.find(c => c.id === parseInt(categoryId)).items.length=0;
+        saveToLocalStorage();
+        location.reload();
+    }
+
     function loadItem(categoryId, newItem) {
         const category = categories.find(c => c.id === parseInt(categoryId));
         if (newItem.name && newItem.price) {
@@ -159,9 +165,17 @@ document.addEventListener('DOMContentLoaded', function() {
             delItem(this.dataset.categoryId);
         },false);
 
-        section.appendChild(addButton);
+        const clrButton = document.createElement('button');
+        clrButton.textContent = '清空';
+        clrButton.classList.add('clear-item-button');
+        clrButton.dataset.categoryId = category.id; // 使用data属性传递categoryId
+        clrButton.addEventListener('click',function(){
+            clrItem(this.dataset.categoryId);
+        },false);
 
+        section.appendChild(addButton);
         section.appendChild(delButton);
+        section.appendChild(clrButton);
         document.getElementById('categoriesContainer').appendChild(section);
     }
 
@@ -194,8 +208,8 @@ document.addEventListener('DOMContentLoaded', function() {
         checkbox.addEventListener('change', function() {
             updateTotal();
         });
-        row.addEventListener('click', function() {
-             if (event.target !== checkbox) { // 确保点击的不是复选框自身
+        row.addEventListener('click', function(event) {
+            if (event.target !== checkbox) { // 确保点击的不是复选框自身
                 checkbox.click(); // 触发checkbox的点击事件
             }
         });
