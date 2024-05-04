@@ -166,13 +166,10 @@ document.addEventListener('DOMContentLoaded', function() {
                                     return parseFloat(row.cells[3].textContent);
                                 });
         const total = selectedItems.reduce((acc, price) => acc + price, 0);
-        console.log(document.getElementsByClassName('ttl'));
+        //console.log(document.getElementsByClassName('ttl'));
         console.log(total);
         document.getElementsByClassName('ttl')[0].innerHTML='总价: '+total.toFixed(2)+'元';    
-        // document.getElementsByClassName('ttl').value='1123';    
-
-        // document.getElementsByClassName('ttl').innerText='1123';    
-
+      
     }
 
     function addItemToTable(table, item) {
