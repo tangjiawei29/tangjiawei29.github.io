@@ -295,7 +295,8 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         drawTotal(ctx, document.getElementsByClassName('ttl')[0].innerHTML, headerFontSize, currentY);
 
-        drawRect('black', ctx, 5, 0, 0, canvas.width, canvas.height)
+        drawRect('black', ctx, 5, 0, 0, canvas.width, canvas.height);
+        drawWatermark(canvas, ctx, 'SHIFU出品');
     }
 
     function drawRect(style, ctx, lineWidth, x, y, w, h) {
@@ -304,6 +305,44 @@ document.addEventListener('DOMContentLoaded', function () {
         ctx.lineWidth = lineWidth; // 根据需要调整线宽
         ctx.strokeRect(x, y, w, h);
         ctx.restore();
+    }
+
+    function drawWatermark(canvas, ctx ,text){
+        // 设置水印文本样式
+        var watermarkText = text;
+        var fillStyle = "rgba(150, 150, 150, 0.15)"; // 文字颜色及透明度
+        var angle = Math.PI / 6; // 水印旋转角度，例如30度
+
+        // 计算单个水印的尺寸
+        ctx.font = "60px Arial";
+        ctx.fillStyle = fillStyle;
+        var textWidth = ctx.measureText(watermarkText).width;
+        var textHeight = ctx.font.height; 
+        var textHeight = ctx.measureText(watermarkText).actualBoundingBoxAscent + ctx.measureText(watermarkText).actualBoundingBoxDescent; 
+
+        // 计算Canvas上可容纳的水印数量
+        var canvasWidth = canvas.width;
+        var canvasHeight = canvas.height;
+        var horizontalFit = Math.ceil(canvasWidth / (textWidth + 5)); // 5为水印间的间隙，可调整
+        var verticalFit = Math.ceil(canvasHeight / (textHeight + 5));
+        var totalFits = horizontalFit * verticalFit;
+
+        // 绘制水印
+        for (var i = 0; i < totalFits; i++) {
+            var col = i % horizontalFit;
+            var row = Math.floor(i / horizontalFit);
+            
+            // 计算每个水印的绘制位置
+            var x = col * (textWidth + 5) + textWidth / 2;
+            var y = row * (textHeight + 5) + textHeight ;
+            
+            // 保存当前状态（用于旋转）
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(angle);
+            ctx.fillText(watermarkText, -textWidth / 2, textHeight / 2); // 调整原点以中心对齐
+            ctx.restore(); // 恢复状态
+        }
     }
 
     function calcCanvasHeight(ctx, tableWidth) {
@@ -380,7 +419,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     img {
                         max-width: 100%;
                         max-height: 100vh;
-                        background-color: #f0f0f0;
+                        //background-color: #f0f0f0;
                     }
                 </style>
             </head>
