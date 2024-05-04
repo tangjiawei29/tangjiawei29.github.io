@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    #categoriesContainer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .category {
+        width: calc(32%);
+        /* 调整宽度以适应两列布局，并留出间距 */
+        margin-bottom: 10px;
+        background-color: #f7f7f7;
+        /* 默认背景颜色，例如浅灰色 */
+
+        border-radius: 5px;
+    }
+
+    .category:hover {
+        background-color: #e5e5e5;
+        /* 默认背景颜色，例如浅灰色 */
+    }
+
+    .ttl {
+        font-size: 30px;
+    }
+
+    /* 基础表格样式 */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+
+    }
+
+    h1 {
+        font-size: 35px;
+        text-align: center;
+        margin-top: 0px;
+        margin-bottom: 2px;
+    }
+
+    h3 {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    /* 表格标题行 */
+    table tr th {
+        /* background-color: #f7f7f7; */
+        font-size: small;
+        font-weight: bold;
+        padding: 4px;
+        text-align: left;
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+    }
+
+    /* 表格数据行 */
+    table tr td {
+        padding: 4px;
+        font-size: smaller;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .column1 {
+        width: 10%;
+        text-align: left;
+    }
+
+    .column2 {
+        width: 60%;
+        text-align: left;
+    }
+
+    .column3 {
+        width: 12%;
+        text-align: left;
+    }
+
+    .column4 {
+        width: 18%;
+        text-align: left;
+    }
+
+    /* 鼠标悬停行高亮 */
+    table tr:hover td {
+        color: rgb(238, 227, 202);
+        background-color: rgba(89, 137, 241, 0.6);
+        transition: background-color 0.3s;
+        /* 添加过渡效果，使得颜色变化更平滑 */
+    }
+
+    /* 按钮样式 */
+    .add-item-button,
+    .delete-item-button {
+        background-color: #4CAF50;
+        /* Green */
+        border: none;
+        color: white;
+        padding: 5px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 10px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .delete-item-button {
+        background-color: #f44336;
+        /* Red */
+    }
+
+    .clearall-button,
+    .upload-button,
+    .download-button {
+        background-color: #f44336;
+        /* Red */
+        border: none;
+        color: white;
+        padding: 1px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 26px;
+        margin: 10px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .upload-button {
+        background-color: #aac530;
+        /* Red */
+    }
+
+    .download-button {
+        background-color: #154adb;
+        /* Red */
+    }
+
+    /* 清除浮动，确保按钮与表格对齐 */
+    section::after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <title>PC Builder</title>
+    <style>
+        .category {
+            margin-bottom: 20px;
+        }
+    </style>
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <h1>PC Builder V1.0</h1>
+    <div id="totalprice"></div>
+    <div id="categoriesContainer"></div>
+    <div id="tools"></div>
+    <input type="file" id="fileInput" accept=".txt" style="display:none;">
+</body>
+
+</html>
