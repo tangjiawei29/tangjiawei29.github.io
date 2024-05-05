@@ -387,7 +387,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // 创建隐藏的canvas用于绘制
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
-        let tableWidth = 1200; // 示例宽度，可根据实际调整
+        let tableWidth = 1100; // 示例宽度，可根据实际调整
         let tableHeight = 1000; // 示例高度，根据内容动态调整
         canvas.width = tableWidth;
         canvas.height = tableHeight;
