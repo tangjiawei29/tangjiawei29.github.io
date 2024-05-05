@@ -387,7 +387,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // 创建隐藏的canvas用于绘制
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
-        let tableWidth = 800; // 示例宽度，可根据实际调整
+        let tableWidth = 1200; // 示例宽度，可根据实际调整
         let tableHeight = 1000; // 示例高度，根据内容动态调整
         canvas.width = tableWidth;
         canvas.height = tableHeight;
@@ -439,7 +439,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     function drawTotal(ctx, customTitle, fontSize, y) {
         ctx.font = fontSize + 'px Arial';
-        ctx.fillText(customTitle, 500, y); // 调整y坐标以确保标题位于顶部并考虑一些间距
+        ctx.fillText(customTitle, 770, y); // 调整y坐标以确保标题位于顶部并考虑一些间距
     }
     function drawCategoryHeader(ctx, text, fontSize, y) {
         ctx.font = fontSize + 'px Arial';
@@ -450,8 +450,8 @@ document.addEventListener('DOMContentLoaded', function () {
     function drawItemRow(ctx, itemName, note, price, fontSize, y, isFirst) {
         ctx.font = fontSize + 'px Arial';
         ctx.fillText(itemName, 70, y);
-        ctx.fillText(note, 500, y); // 假设列宽
-        ctx.fillText(parseFloat(price).toFixed(2) + '元', 600, y); // 假设列宽
+        ctx.fillText(note, 750, y); // 假设列宽
+        ctx.fillText(parseFloat(price).toFixed(2) + '元', 820, y); // 假设列宽
     }
 
     function loadTable() {
