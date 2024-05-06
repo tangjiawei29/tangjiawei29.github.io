@@ -296,7 +296,7 @@ document.addEventListener('DOMContentLoaded', function () {
         drawTotal(ctx, document.getElementsByClassName('ttl')[0].innerHTML, headerFontSize, currentY);
 
         drawRect('black', ctx, 5, 0, 0, canvas.width, canvas.height);
-        drawWatermark(canvas, ctx, 'SHIFU出品');
+        drawWatermark(canvas, ctx, '这是水印!!');
     }
 
     function drawRect(style, ctx, lineWidth, x, y, w, h) {
