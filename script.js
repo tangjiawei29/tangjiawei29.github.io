@@ -57,11 +57,15 @@ document.addEventListener('DOMContentLoaded', function () {
             print();
         }, false);
 
-
+        const textInput = document.createElement('input');
+        textInput.placeholder='汤工出品';
+        textInput.className = 'watermark';
+        textInput.type='text';
         section.appendChild(clearButton);
         section.appendChild(downloadButton);
         section.appendChild(uploadButton);
         section.appendChild(printButton);
+        section.appendChild(textInput);
 
         document.getElementById('totalprice').appendChild(section);
 
@@ -260,6 +264,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const headerFontSize = 25;
         let currentY = 50; // 起始绘制位置
 
+       
         // 遍历所有表格，找到选中的item
         const selectedItems = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
             .map(checkbox => {
@@ -296,7 +301,8 @@ document.addEventListener('DOMContentLoaded', function () {
         drawTotal(ctx, document.getElementsByClassName('ttl')[0].innerHTML, headerFontSize, currentY);
 
         drawRect('black', ctx, 5, 0, 0, canvas.width, canvas.height);
-        drawWatermark(canvas, ctx, '这是水印!!');
+        let watermark = document.getElementsByClassName('watermark')[0];
+        drawWatermark(canvas, ctx, watermark.value||'汤工出品');
     }
 
     function drawRect(style, ctx, lineWidth, x, y, w, h) {
@@ -387,7 +393,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // 创建隐藏的canvas用于绘制
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
-        let tableWidth = 1100; // 示例宽度，可根据实际调整
+        let tableWidth = 800; // 示例宽度，可根据实际调整
         let tableHeight = 1000; // 示例高度，根据内容动态调整
         canvas.width = tableWidth;
         canvas.height = tableHeight;
@@ -395,6 +401,10 @@ document.addEventListener('DOMContentLoaded', function () {
         // 计算表格样式，以适应canvas绘制
 
         canvas.height = newHeight;
+        ctx.save();
+        ctx.fillStyle = 'rgb(255,255,255)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.restore();
         drawCanvas(canvas, ctx, tableWidth);
         // 将canvas转换为图片URL
         const imgDataUrl = canvas.toDataURL('image/png');
@@ -439,7 +449,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     function drawTotal(ctx, customTitle, fontSize, y) {
         ctx.font = fontSize + 'px Arial';
-        ctx.fillText(customTitle, 770, y); // 调整y坐标以确保标题位于顶部并考虑一些间距
+        ctx.fillText(customTitle, 500, y); // 调整y坐标以确保标题位于顶部并考虑一些间距
     }
     function drawCategoryHeader(ctx, text, fontSize, y) {
         ctx.font = fontSize + 'px Arial';
@@ -450,8 +460,8 @@ document.addEventListener('DOMContentLoaded', function () {
     function drawItemRow(ctx, itemName, note, price, fontSize, y, isFirst) {
         ctx.font = fontSize + 'px Arial';
         ctx.fillText(itemName, 70, y);
-        ctx.fillText(note, 750, y); // 假设列宽
-        ctx.fillText(parseFloat(price).toFixed(2) + '元', 820, y); // 假设列宽
+        ctx.fillText(note, 500, y); // 假设列宽
+        ctx.fillText(parseFloat(price).toFixed(2) + '元', 600, y); // 假设列宽
     }
 
     function loadTable() {
